@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		D3FE44292113D67A006640E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FE44282113D67A006640E8 /* AppDelegate.swift */; };
-		D3FE442B2113D67A006640E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FE442A2113D67A006640E8 /* ViewController.swift */; };
+		D3FE442B2113D67A006640E8 /* RepoListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FE442A2113D67A006640E8 /* RepoListingViewController.swift */; };
 		D3FE442E2113D67A006640E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3FE442C2113D67A006640E8 /* Main.storyboard */; };
 		D3FE44302113D67A006640E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3FE442F2113D67A006640E8 /* Assets.xcassets */; };
 		D3FE44332113D67A006640E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3FE44312113D67A006640E8 /* LaunchScreen.storyboard */; };
+		D3FE443B2113D8E1006640E8 /* RepoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FE443A2113D8E1006640E8 /* RepoCollectionViewCell.swift */; };
+		D3FE443D2113F920006640E8 /* RepoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FE443C2113F920006640E8 /* RepoModel.swift */; };
+		E37E119821149C4A0020DCF9 /* RepoListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E119721149C4A0020DCF9 /* RepoListingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D3FE44252113D67A006640E8 /* GitList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3FE44282113D67A006640E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3FE442A2113D67A006640E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D3FE442A2113D67A006640E8 /* RepoListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListingViewController.swift; sourceTree = "<group>"; };
 		D3FE442D2113D67A006640E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3FE442F2113D67A006640E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3FE44322113D67A006640E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3FE44342113D67A006640E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3FE443A2113D8E1006640E8 /* RepoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCollectionViewCell.swift; sourceTree = "<group>"; };
+		D3FE443C2113F920006640E8 /* RepoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoModel.swift; sourceTree = "<group>"; };
+		E37E119721149C4A0020DCF9 /* RepoListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +61,48 @@
 			isa = PBXGroup;
 			children = (
 				D3FE44282113D67A006640E8 /* AppDelegate.swift */,
-				D3FE442A2113D67A006640E8 /* ViewController.swift */,
+				E37E119921149C5F0020DCF9 /* View */,
+				E37E119B21149C9D0020DCF9 /* ViewController */,
+				E37E119A21149C880020DCF9 /* View Model */,
+				E37E119C21149CAF0020DCF9 /* Model */,
 				D3FE442C2113D67A006640E8 /* Main.storyboard */,
 				D3FE442F2113D67A006640E8 /* Assets.xcassets */,
 				D3FE44312113D67A006640E8 /* LaunchScreen.storyboard */,
 				D3FE44342113D67A006640E8 /* Info.plist */,
 			);
 			path = GitList;
+			sourceTree = "<group>";
+		};
+		E37E119921149C5F0020DCF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3FE443A2113D8E1006640E8 /* RepoCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E37E119A21149C880020DCF9 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				E37E119721149C4A0020DCF9 /* RepoListingViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		E37E119B21149C9D0020DCF9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D3FE442A2113D67A006640E8 /* RepoListingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E37E119C21149CAF0020DCF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D3FE443C2113F920006640E8 /* RepoModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +177,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3FE442B2113D67A006640E8 /* ViewController.swift in Sources */,
+				D3FE442B2113D67A006640E8 /* RepoListingViewController.swift in Sources */,
+				D3FE443D2113F920006640E8 /* RepoModel.swift in Sources */,
 				D3FE44292113D67A006640E8 /* AppDelegate.swift in Sources */,
+				D3FE443B2113D8E1006640E8 /* RepoCollectionViewCell.swift in Sources */,
+				E37E119821149C4A0020DCF9 /* RepoListingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +310,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Interview.GitList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -278,7 +322,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Interview.GitList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -301,6 +345,7 @@
 				D3FE44392113D67A006640E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
