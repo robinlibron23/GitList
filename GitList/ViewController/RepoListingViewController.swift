@@ -18,6 +18,7 @@ final class RepoListingViewController: UIViewController {
     private var gitRepos = [RepoModel]()
     private let reuseIdentifier = "cell"
     private lazy var viewModel = RepoListingViewModel()
+    private let cellHeight:CGFloat = 120
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,7 @@ final class RepoListingViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         let layout = UICollectionViewFlowLayout()
-        //        layout.scrollDirection = .vertical //.horizontal
-        //        layout.itemSize = cellSize
-        //        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
         collectionView.setCollectionViewLayout(layout, animated: true)
@@ -56,7 +55,7 @@ extension RepoListingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let viewFrameHeight = view.frame.height
         let viewFrameWidth = view.frame.width
-        var cellSize = CGSize(width: 120, height: 120)
+        var cellSize = CGSize(width: cellHeight, height: cellHeight)
 
         if isGridViewSelected {
             if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -67,14 +66,12 @@ extension RepoListingViewController: UICollectionViewDelegateFlowLayout {
                 cellSize = CGSize(width: cellWidth, height: viewFrameHeight / 3)
             }
         } else {
-            cellSize = CGSize(width: viewFrameWidth, height: 120)
+            cellSize = CGSize(width: viewFrameWidth, height: cellHeight)
         }
         return cellSize
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print("indexPath.row: \(indexPath.row)")
-        print("gitRepos.count-1: \(gitRepos.count - 1)")
         if indexPath.row == gitRepos.count - 1 {
             viewModel.fetchMoreRepos(for: textField.text ?? "") { [weak self] repos in
                 self?.gitRepos = repos
@@ -93,9 +90,7 @@ extension RepoListingViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionViewCell
-        cell.label.text = "Name: \(self.gitRepos[indexPath.item].name)\nDescription: \(self.gitRepos[indexPath.item].description) \nCreatedAt: \(self.gitRepos[indexPath.item].createdAt) \nLicense: \(self.gitRepos[indexPath.item].license)"
-        cell.backgroundColor = UIColor.cyan
-
+        cell.populateData(repo: self.gitRepos[indexPath.item])
         return cell
     }
 }

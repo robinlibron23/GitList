@@ -14,7 +14,6 @@ final class RepoListingViewModel {
     private var loadMoreCounter = 1
 
     func fetchMoreRepos(for project:String, completion: @escaping CompletionClosure) {
-        // TODO: handle multiples of 10
         if repos.count >= loadMoreCounter * 10 {
             loadMoreCounter += 1
             makeAPICall(name: project, page: loadMoreCounter, completion: completion)
@@ -27,9 +26,7 @@ final class RepoListingViewModel {
         makeAPICall(name: project, page: 1, completion: completion)
     }
 
-     func makeAPICall(name: String, page: Int, completion: @escaping CompletionClosure) {
-//        let endPoint: String = "https://jsonplaceholder.typicode.com/todos/1"
-
+    func makeAPICall(name: String, page: Int, completion: @escaping CompletionClosure) {
         let endPoint = "https://api.github.com/users/\(name)/repos?page=\(page)&per_page=10"
         let session = URLSession.shared
 
@@ -54,7 +51,6 @@ final class RepoListingViewModel {
     }
 
     func parseAPIResponse(responseData: Data, _ completion: @escaping CompletionClosure) {
-        // Parsing
         var name = ""
         var description = ""
         var createdAt = ""
@@ -68,19 +64,23 @@ final class RepoListingViewModel {
             }
 
             for repo in responseData {
-
                 guard let repoDict = repo as? Dictionary<String, Any> else { return }
-                name = repoDict["name"] as! String
-                if let descriptionFromAPI = repoDict["description"] as? String { //
+
+                if let nameFromAPI = repoDict["name"] as? String {
+                    name = nameFromAPI
+                }
+                if let descriptionFromAPI = repoDict["description"] as? String {
                     description = descriptionFromAPI
                 }
-                createdAt = repoDict["created_at"]  as! String
-
+                if let createdAtFromAPI = repoDict["created_at"] as? String {
+                    createdAt = createdAtFromAPI
+                }
                 if let license = repoDict["license"] as? Dictionary<String, Any> {
-                    licenseName = license["name"]  as! String
+                    if let licenseFromAPI =  license["name"] as? String {
+                        licenseName = licenseFromAPI
+                    }
                 }
                 repos.append(RepoModel(name: name, description: description, createdAt: createdAt, license: licenseName))
-
             }
             completion(repos)
         } catch  {

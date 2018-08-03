@@ -11,4 +11,9 @@ import UIKit
 
 final class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
+    
+    func populateData(repo: RepoModel) {
+        backgroundColor = UIColor.cyan
+        label.text = "Name: \(repo.name)\nDescription: \(repo.description) \nCreatedAt: \(repo.createdAt) \nLicense: \(repo.license)"
+    }
 }
