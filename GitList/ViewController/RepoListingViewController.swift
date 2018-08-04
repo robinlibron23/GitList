@@ -29,10 +29,13 @@ final class RepoListingViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
         collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.reloadData()
     }
 
     // MARK: Actions
